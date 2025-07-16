@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
   
-      const webhookURL = WEBHOOK_SECRET;
+      const webhookURL = WEBHOOK_URL;
   
       // Compose description
       let description = `**User:** ${username}\n**Product:** ${product}\n**Quantity:** ${quantity}`;
