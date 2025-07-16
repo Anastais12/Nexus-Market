@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexus Market - Bots</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/Nexus Shop.png" />
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shopsite.html">Shop Site</a></li>
+        <li><a href="bots.html">Bots</a></li>
+        <li><a href="servers.html">Servers</a></li>
+        <li><a href="bundles.html" class="active">Bundles</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+    <h1>Bundles</h1>
+  </header>
+
+<main>
+    <div class="products-grid">
+      <div class="product-card">
+        <h2>FiveM Bundle</h2>
+        <p>Bundle including FiveM Bot and Server with discounts.</p>
+        <p class="price">35€</p> <!-- Discount applied hypothetically -->
+      </div>
+      <div class="product-card">
+        <h2>Shop Bundle</h2>
+        <p>Includes Shop Bot and Shop Server.</p>
+        <p class="price">35€</p>
+      </div>
+      <div class="product-card">
+        <h2>Community Bundle</h2>
+        <p>Community Bot with Server bundle.</p>
+        <p class="price">35€</p>
+      </div>
+      <div class="product-card">
+        <h2>Custom Bundle</h2>
+        <p>Contact us for custom bundle pricing and configuration.</p>
+        <p class="price">40€+</p>
+      </div>
+    </div>
+  
+    <div class="divider"></div>
+  
+    <form id="orderForm" novalidate>
+      <h2>Place Your Bundle Order</h2>
+  
+      <label for="username">Your Discord Username *</label>
+      <input type="text" id="username" name="username" placeholder="Your Discord Username" required />
+  
+      <label for="product">Choose a bundle *</label>
+      <select id="product" name="product" required>
+        <option value="FiveM Bundle" data-price="35">FiveM Bundle</option>
+        <option value="Shop Bundle" data-price="35">Shop Bundle</option>
+        <option value="Community Bundle" data-price="35">Community Bundle</option>
+        <option value="Custom Bundle" data-price="40">Custom Bundle</option>
+      </select>
+  
+      <label for="quantity">Quantity *</label>
+      <input type="number" id="quantity" name="quantity" min="1" value="1" required oninput="updateTotalPrice()" />
+      <p id="totalPrice">Total Price: 0€</p>
+  
+      <button type="submit">Submit Order</button>
+      <p id="status" role="alert" aria-live="polite" style="margin-top: 1rem; font-weight: 600;"></p>
+    </form>
+  
+    <div class="popup" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+      <div class="popup-content">
+        <p id="modalTitle">✅ Your order has been submitted!</p>
+        <p id="modalDesc">Join our Discord server for updates and support.</p>
+        <a href="https://discord.gg/kKNEKNkXR8" target="_blank" rel="noopener noreferrer" style="color: var(--orange); font-weight: 700;">Join Discord Server</a>
+        <br />
+        <button onclick="closeModal(); reloadPage();">OK</button>
+      </div>
+    </div>
+
+    <div class="tos">
+      <h2>📄 Terms of Service</h2>
+      <ul>
+        <li><strong>User Responsibility:</strong> You are solely responsible for your actions and behavior.</li>
+        <li><strong>Digital Transactions:</strong> Nexus Market operates as a platform, not a legal entity.</li>
+        <li><strong>Refunds & Disputes:</strong> Provided solely by the seller; no refunds by server management.</li>
+        <li><strong>Accountability:</strong> Fraud leads to ban and possible reports to Discord Safety.</li>
+        <li><strong>Intellectual Property:</strong> No posting copyrighted content.</li>
+        <li><strong>Rule Violations:</strong> May result in warnings, mutes, or bans.</li>
+        <li><strong>Changes to Terms:</strong> Terms may change at any time.</li>
+      </ul>
+    </div>
+  </main>
+  
+  <script src="js/main.js"></script>
+  <script src="js/orderHandler.js"></script>
+
+  <script>
+    // Update total price below quantity based on selected product price and quantity
+    function updateTotalPrice() {
+      const productSelect = document.getElementById('product');
+      const quantityInput = document.getElementById('quantity');
+      const totalPriceEl = document.getElementById('totalPrice');
+
+      if (!productSelect.value) {
+        totalPriceEl.textContent = 'Total Price: 0€';
+        return;
+      }
+
+      // Get price from data attribute on selected option, fallback 0
+      const selectedOption = productSelect.options[productSelect.selectedIndex];
+      let basePrice = parseFloat(selectedOption.getAttribute('data-price')) || 0;
+
+      if (productSelect.value.toLowerCase().includes('custom')) {
+        basePrice = 40;
+      }
+
+      const qty = Math.max(1, parseInt(quantityInput.value) || 1);
+
+      const total = basePrice * qty;
+
+      totalPriceEl.textContent = `Total Price: ${total}€${productSelect.value.toLowerCase().includes('custom') ? '+' : ''}`;
+    }
+
+    // Initialize total price on load
+    document.addEventListener('DOMContentLoaded', () => {
+      updateTotalPrice();
+
+      // Also update total price on product change handled in onchange already
+      document.getElementById('product').addEventListener('change', updateTotalPrice);
+      document.getElementById('quantity').addEventListener('input', updateTotalPrice);
+    });
+  </script>
+</body>
+</html>

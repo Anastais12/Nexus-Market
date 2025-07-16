@@ -1,0 +1,371 @@
+/* Color Palette */
+:root {
+  --yellow: #ffbb00;
+  --orange: #ff9500;
+  --dark-gray: #2b2b2b;
+  --light-bg: #f0f2f5;
+  --text-dark: #222;
+  --text-light: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--light-bg);
+  margin: 0;
+  padding: 0;
+  color: var(--text-dark);
+}
+
+header {
+  background: var(--yellow);
+  color: var(--text-light);
+  padding: 1rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+nav {
+  margin-bottom: 1rem;
+}
+
+.nav {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--orange);
+}
+
+/* Main container */
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem 1.5rem 3rem 1.5rem;
+}
+
+/* Bot / Server / Bundle Cards */
+.product-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 20px;
+  margin-bottom: 2rem;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+.product-card h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+  color: var(--dark-gray);
+}
+
+.features {
+  list-style: none;
+  padding-left: 1rem;
+  margin-bottom: 1.2rem;
+  color: #444;
+  font-weight: 500;
+}
+
+.features li {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+}
+
+/* Form styles */
+form {
+  background: white;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  font-weight: 600;
+  max-width: 100%;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+input[type=text],
+input[type=number],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+input[type=number] {
+  max-width: 120px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--orange);
+  box-shadow: 0 0 6px var(--orange);
+}
+
+button {
+  margin-top: 1.5rem;
+  background: var(--orange);
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #cc7700;
+}
+
+/* Responsive grids for product cards */
+.products-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media(min-width: 600px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(min-width: 900px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Modal styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.popup.active {
+  display: flex;
+}
+
+.popup-content {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.3);
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+.popup-content button {
+  margin-top: 20px;
+  background: var(--yellow);
+  border: none;
+  padding: 10px 26px;
+  font-size: 1rem;
+  border-radius: 8px;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.3s ease;
+}
+
+.popup-content button:hover {
+  background: var(--orange);
+  color: var(--text-light);
+}
+
+/* Terms of Service styling */
+.tos {
+  background: white;
+  border-radius: 20px;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin: 2rem auto;
+  max-width: 760px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+}
+
+.tos h2 {
+  font-weight: 700;
+  color: var(--dark-gray);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.tos ul {
+  padding-left: 1rem;
+}
+
+.tos li {
+  margin-bottom: 1rem;
+}
+
+.tos strong {
+  font-weight: 700;
+  color: var(--dark-gray);
+}
+
+/* Divider line */
+.divider {
+  height: 2px;
+  background-color: #ccc;
+  margin: 40px 0;
+  width: 100%;
+}
+
+/* Custom request box visibility helper */
+.hidden {
+  display: none;
+}
+.discord-info, .developers {
+  background: white;
+  max-width: 700px;
+  margin: 2rem auto;
+  border-radius: 15px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+.discord-info h2, .developers h2 {
+  text-align: center;
+  color: var(--yellow);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+.discord-info p {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+.btn-discord {
+  display: block;
+  max-width: 220px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  background-color: var(--orange);
+  color: white;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  text-decoration: none;
+  box-shadow: 0 3px 8px rgb(255 149 0 / 0.5);
+  transition: background-color 0.3s ease;
+}
+.btn-discord:hover {
+  background-color: #cc7700;
+  box-shadow: 0 4px 12px rgb(204 119 0 / 0.8);
+}
+.developers-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.developer-card {
+  background: var(--yellow);
+  color: var(--dark-gray);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  width: 240px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  text-align: center;
+  font-weight: 700;
+  transition: transform 0.3s ease;
+}
+.developer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+.developer-name {
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.3rem 0;
+}
+.developer-role {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 0.6rem;
+}
+.developer-discord {
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+  background: white;
+  border-radius: 10px;
+  padding: 4px 10px;
+  user-select: all;
+  margin-top: 0.2rem;
+  display: inline-block;
+  font-family: monospace, monospace;
+}
+@media(max-width: 650px) {
+  .developer-card {
+    width: 100%;
+  }
+}
+#totalPrice {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--orange);
+}
