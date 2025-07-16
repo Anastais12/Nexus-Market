@@ -1,3 +1,5 @@
+require('dotenv').config
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('orderForm');
     if (!form) return;
@@ -19,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
   
-      const webhookURL = 'https://discord.com/api/webhooks/1393878052886417430/f3x6gXkcGpOPg-wVG2X6XUMXJVqdskc08n-YYlj4KVYqnUqGkxcdvhZO3Xq5PiiPndBc';
+      const webhookURL = process.env.WEBHOOK_SECRET;
   
       // Compose description
       let description = `**User:** ${username}\n**Product:** ${product}\n**Quantity:** ${quantity}`;
