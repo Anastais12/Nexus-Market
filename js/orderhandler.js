@@ -1,4 +1,4 @@
-require('dotenv').config
+require('dotenv').config();
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('orderForm');
